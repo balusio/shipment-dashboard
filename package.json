@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --open",
+    "server": "cd ./server && npm run server",
     "test": "npm run test"
   },
   "repository": {
