@@ -23,7 +23,7 @@ module.exports = {
     rules: [
       {
         test: /\.(ts|js)x?$/,
-        exclude: [/node_modules/, './server'],
+        exclude: [/node_modules/, /server/],
         use: ["ts-loader"],
       }
     ],

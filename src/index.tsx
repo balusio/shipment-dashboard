@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import Button from '@material-ui/core/Button';  
 const App = (): JSX.Element => (
   <>
-  <h1>Hello</h1>
+   <Button variant="contained" color="primary">
+      Hello World
+    </Button>
   </>
 );
 
