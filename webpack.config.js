@@ -17,8 +17,13 @@ module.exports = {
     port: 4000,
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+    alias: {
+      containers: path.resolve(__dirname, 'src/containers/'),
+      components: path.resolve(__dirname, 'src/components/'),
+    },
   },
+
   module: {
     rules: [
       {

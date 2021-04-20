@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "contai ners/*": ["src/containers/*"],
+    }
+  },
+  "exclude": ["dist", "server"]
+}
