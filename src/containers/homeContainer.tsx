@@ -1,12 +1,10 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import AppBar from 'components/AppBar/AppBar';
 
-const App = (): JSX.Element => (
+const HomeContainer = (): JSX.Element => (
   <>
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
+    <AppBar />
   </>
 );
 
-export default App;
+export default HomeContainer;

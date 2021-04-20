@@ -13,10 +13,7 @@
     "isolatedModules": true,
     "noEmit": false,
     "jsx": "react",
-    "paths": {
-      "containers": ["src/containers"]
-    }
   },
   
-  "include": ["src"]
+  "include": ["src", "jest","./src/*.ts"]
 }

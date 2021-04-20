@@ -5,7 +5,7 @@ module.exports = {
     ecmaFeatures: { jsx: true },
     ecmaVersion: 2020,
     sourceType: 'module',
-    project: './tsconfig.eslint.json',
+    project: './tsconfig.json',
     projectFolderIgnoreList: ['/node_modules/'],
   },
   rules: {
@@ -19,7 +19,7 @@ module.exports = {
     "import/resolver": {
       "typescript": {
         "alwaysTryTypes": true, 
-        project: './tsconfig.eslint.json',
+        project: './tsconfig.json',
       }
     }
   },

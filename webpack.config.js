@@ -21,6 +21,8 @@ module.exports = {
     alias: {
       containers: path.resolve(__dirname, 'src/containers/'),
       components: path.resolve(__dirname, 'src/components/'),
+      assets: path.resolve(__dirname, 'src/assets/'),
+      utils: path.resolve(__dirname, 'src/utils/'),
     },
   },
 
@@ -30,6 +32,13 @@ module.exports = {
         test: /\.(ts|js)x?$/,
         exclude: [/node_modules/, /server/],
         use: ["ts-loader"],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        // options: {
+        //   publicPath: 'assets/img/',
+        // },
       }
     ],
   },
