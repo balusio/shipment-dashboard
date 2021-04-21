@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
-import HomeContainer from 'containers/HomeContainer';
+import HomeContainer from 'containers/HomeContainer/HomeContainer';
+import { ShipmentProvider } from 'utils/context/ShipmentsContext';
 
 import styles from './AppStyles';
 
@@ -10,7 +11,9 @@ const App = (): JSX.Element => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <HomeContainer />
+      <ShipmentProvider>
+        <HomeContainer />
+      </ShipmentProvider>
     </div>
   );
 };

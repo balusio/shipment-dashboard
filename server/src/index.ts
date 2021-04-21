@@ -1,8 +1,10 @@
 import express from 'express';
 import csvToJson from 'csvtojson';
 import path from 'path';
+import cors from 'cors';
 
 const app = express();
+app.use(cors())
 const PORT = 8080;
 const dataFile: string = path.resolve(__dirname, 'data/shipment-data.csv');
 

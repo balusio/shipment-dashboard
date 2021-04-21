@@ -10,7 +10,8 @@ module.exports = {
   },
   rules: {
     // turn on errors for missing imports
-    "import/no-unresolved": 0
+    "import/no-unresolved": 0,
+    "react/require-default-props": 0,
   },
   settings: {
     "import/parsers": {

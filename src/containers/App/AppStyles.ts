@@ -5,6 +5,9 @@ const AppStyles = (theme: Theme): StyleRules => createStyles({
     height: '100%',
     width: '100%',
     backgroundColor: theme.palette.secondary.main,
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100%',
   },
 });
 
