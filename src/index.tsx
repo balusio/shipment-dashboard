@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@material-ui/core';
 import theme from 'utils/theme';
 import App from 'containers/App/App';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const Root = (): JSX.Element => (
   <ThemeProvider theme={theme}>
-    <App />
+    <Router>
+      <App />
+    </Router>
+
   </ThemeProvider>
 );
 

@@ -2,6 +2,7 @@ import express from 'express';
 import csvToJson from 'csvtojson';
 import path from 'path';
 import cors from 'cors';
+import dataGetter from './dataGetter';
 
 const app = express();
 app.use(cors())
@@ -17,6 +18,7 @@ app.get('/data', (req,res) => {
     res.send(jsonObj);
   })
 });
+app.get('/alldata', dataGetter);
 
 app.listen(PORT, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);

@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Table, TableCell, TableBody, TableContainer,
-  TableRow, TableHead, makeStyles, Button
+  TableRow, TableHead, makeStyles, Button,
 } from '@material-ui/core';
 import { useShipmentContext } from 'utils/context/ShipmentsContext';
 import { ShipmentObject } from 'utils/types';

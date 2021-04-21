@@ -5,6 +5,7 @@ import ShipmentResume from 'components/ShipmentResume/ShipmentResume';
 import ShipmentDataTable from 'components/ShipmentDataTable/ShipmentDataTable';
 import { useShipmentContext } from 'utils/context/ShipmentsContext';
 import { Button, makeStyles, Typography } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 import styles from './HomeContainerStyles';
 
@@ -45,7 +46,7 @@ const HomeContainer = (): JSX.Element => {
         />
         <ShipmentDataTable />
         <Button>
-          Check All Shipments
+          <Link to="/allshipments">See all Shipments</Link>
         </Button>
         <Typography variant="body2" className={classes.totalShipments}>
           total Shipments:
