@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import AppBar from 'components/AppBar/AppBar';
 import { FullShipmentObject } from 'utils/types';
 import {
@@ -8,6 +8,7 @@ import { useShipmentContext } from 'utils/context/ShipmentsContext';
 import ModeTransportIcon from 'components/ModeTransportIcon/ModeTransportIcon';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import { useHistory } from 'react-router-dom';
 
 import styles from './NewShipmentContainerStyles';
 
@@ -16,6 +17,7 @@ const useStyles = makeStyles(styles);
 const NewShipmentContainer = (): JSX.Element => {
   const classes = useStyles();
   const { dispatch } = useShipmentContext();
+  const history = useHistory();
   const [formObject, serFormObject] = useState<FullShipmentObject>({
     // create a custom hash or send the ID generator on the backend
     'Shipment ID': `${new Date()}-12344-6789-1211-124-blah-blah-blah`,
@@ -27,11 +29,13 @@ const NewShipmentContainer = (): JSX.Element => {
     'Estimated Arrival': `${new Date()}`,
     Status: '',
   });
-  const handleChange = (e: HTMLInputElement | any) => {
-    serFormObject({
-      ...formObject,
-      [e.target.name]: e.target.value,
-    });
+  const handleChange = (e: HTMLInputElement | any) : void => {
+    if (e.target.value !== '' || e.target.value !== null) {
+      serFormObject({
+        ...formObject,
+        [e.target.name]: e.target.value,
+      });
+    }
   };
 
   const handleDateChange = (typeDate: keyof FullShipmentObject, date: string) => {
@@ -41,10 +45,20 @@ const NewShipmentContainer = (): JSX.Element => {
     });
   };
 
-  const setNewShipment = () => dispatch({
-    type: 'ADD_SHIPMENT',
-    data: formObject,
-  });
+  const setNewShipment = () => {
+    // check all elements of the state form object and if is valid adds the elemnt to the context,
+    const validShipment = Object.keys(formObject)
+      .every(
+        (elem) => formObject[elem as keyof FullShipmentObject] !== '',
+      );
+    if (validShipment) {
+      dispatch({
+        type: 'ADD_SHIPMENT',
+        data: formObject,
+      });
+      history.push('/allshipments');
+    }
+  };
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>

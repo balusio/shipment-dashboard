@@ -16,7 +16,6 @@ export type Action = {
 export type Dispatch = (action: Action) => void;
 export type ShipmentsContextProps = { children: ReactNode };
 export type State = {
-  shipmentsLatestList: ShipmentObject[];
   shipmentsFullList: FullShipmentObject[];
   shipmentsDelivered: number;
   shipmentsCancelled: number;
@@ -59,11 +58,11 @@ const ShipmentReducer = (state: State, action: Action): State => {
     case 'SET_DATA': {
       const {
         shipmentsDelivered, shipmentsCancelled, shipmentsInTransit,
-      } = shipmentCounts(data as ShipmentObject[]);
+      } = shipmentCounts(data as FullShipmentObject[]);
 
       return {
         ...state,
-        shipmentsLatestList: data as ShipmentObject[],
+        shipmentsFullList: data as FullShipmentObject[],
         shipmentsDelivered,
         shipmentsCancelled,
         shipmentsInTransit,
@@ -89,12 +88,6 @@ const ShipmentReducer = (state: State, action: Action): State => {
         shipmentsInTransit,
       };
     }
-    // case 'REMOVE_SHIPMENT': {
-    //   return {}
-    // }
-    // case 'EDIT_SHIPMENT': {
-    //   return {}
-    // }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -103,7 +96,6 @@ const ShipmentReducer = (state: State, action: Action): State => {
 
 const ShipmentProvider = ({ children }: ShipmentsContextProps) => {
   const [state, dispatch] = useReducer(ShipmentReducer, {
-    shipmentsLatestList: [],
     shipmentsFullList: [],
     shipmentsDelivered: 0,
     shipmentsCancelled: 0,

@@ -4,14 +4,14 @@ import AppBar from 'components/AppBar/AppBar';
 import { FullShipmentObject } from 'utils/types';
 import {
   Button, makeStyles, Typography, TableRow,
-  Table, TableCell, TableBody, TableContainer, TableHead, TableCellProps,
+  Table, TableCell, TableBody, TableContainer,
+  TableHead, TableCellProps,
 } from '@material-ui/core';
 import ModeTransportIcon from 'components/ModeTransportIcon/ModeTransportIcon';
 import { Link, NavLink } from 'react-router-dom';
 import { useShipmentContext } from 'utils/context/ShipmentsContext';
-
-import styles from './ShipmentListContainerStyles';
 import { API_URL } from 'utils/constants';
+import styles from './ShipmentListContainerStyles';
 
 const useStyles = makeStyles(styles);
 
@@ -30,6 +30,7 @@ const ShipmentListContainer = (): JSX.Element => {
     <TableCell classes={{ head: classes.tableHead }} {...props}>{children}</TableCell>
   );
 
+  // TODO: move this to the dataHook and migrate the functionality to be used offline
   useEffect(() => {
     if (shipmentsFullList.length <= 0) {
       axios.get(`${API_URL}alldata`)

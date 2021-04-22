@@ -13,8 +13,9 @@ const useStyles = makeStyles(styles);
 
 const ShipmentDataTable = (): JSX.Element => {
   const classes = useStyles(styles);
-  const { state: { shipmentsLatestList } } = useShipmentContext();
-  const tableRows = [...shipmentsLatestList].splice(0, 10);
+  const { state: { shipmentsFullList } } = useShipmentContext();
+  const tableRows = [...shipmentsFullList].splice(0, 10);
+
   return (
     <div className={classes.container}>
       <TableContainer>
