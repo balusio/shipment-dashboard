@@ -3,7 +3,7 @@ import {
   AppBar, Toolbar, Typography, Button, makeStyles,
 } from '@material-ui/core';
 import Logo from 'assets/img/logixboard-logo.png';
-
+import { Link } from 'react-router-dom';
 import styles from './AppBarStyles';
 
 const useStyles = makeStyles(styles);
@@ -14,7 +14,9 @@ const AppBarComponent = (): JSX.Element => {
   return (
     <AppBar position="static" classes={{ root: classes.appBarRoot }}>
       <Toolbar>
-        <img src={Logo} alt="logo" className={classes.img} />
+        <Link to="/">
+          <img src={Logo} alt="logo" className={classes.img} />
+        </Link>
       </Toolbar>
     </AppBar>
   );

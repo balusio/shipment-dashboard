@@ -12,6 +12,8 @@ module.exports = {
     // turn on errors for missing imports
     "import/no-unresolved": 0,
     "react/require-default-props": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/jsx-one-expression-per-line": 0, 
   },
   settings: {
     "import/parsers": {

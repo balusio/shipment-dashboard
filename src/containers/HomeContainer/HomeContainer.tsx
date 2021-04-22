@@ -5,6 +5,7 @@ import ShipmentResume from 'components/ShipmentResume/ShipmentResume';
 import ShipmentDataTable from 'components/ShipmentDataTable/ShipmentDataTable';
 import { useShipmentContext } from 'utils/context/ShipmentsContext';
 import { Button, makeStyles, Typography } from '@material-ui/core';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { Link } from 'react-router-dom';
 
 import styles from './HomeContainerStyles';
@@ -15,19 +16,21 @@ const HomeContainer = (): JSX.Element => {
   const classes = useStyles();
   const {
     state: {
-      shipmentsInTransit, shipmentsDelivered, shipmentsCancelled, shipmentsList,
+      shipmentsInTransit, shipmentsDelivered, shipmentsCancelled, shipmentsLatestList,
     },
     dispatch,
   } = useShipmentContext();
 
   useEffect(() => {
-    axios.get('http://localhost:8080/data')
-      .then(({ data }: AxiosResponse) => {
-        dispatch({
-          type: 'SET_DATA',
-          data,
+    if (shipmentsLatestList.length <= 0) {
+      axios.get('http://localhost:8080/data')
+        .then(({ data }: AxiosResponse) => {
+          dispatch({
+            type: 'SET_DATA',
+            data,
+          });
         });
-      });
+    }
   }, []);
 
   return (
@@ -45,12 +48,23 @@ const HomeContainer = (): JSX.Element => {
           }}
         />
         <ShipmentDataTable />
-        <Button>
-          <Link to="/allshipments">See all Shipments</Link>
-        </Button>
+        <div className={classes.linkContainer}>
+          <Button
+            classes={{
+              root: classes.linkshipment,
+            }}
+            component={Link}
+            to="/allshipments"
+            variant="contained"
+          >
+            See all Shipments
+            <ArrowForwardIcon className={classes.linkIcon} />
+          </Button>
+        </div>
+
         <Typography variant="body2" className={classes.totalShipments}>
           total Shipments:
-          <strong>{ shipmentsList.length }</strong>
+          <strong>{ shipmentsLatestList.length }</strong>
         </Typography>
       </div>
     </>

@@ -5,3 +5,9 @@ export type ShipmentObject = {
   'Shipment ID': string;
   'Status': string;
 };
+
+export type FullShipmentObject = ShipmentObject & {
+  'Estimated Arrival': string;
+  'Estimated Departure': string;
+  'Origin': string;
+};

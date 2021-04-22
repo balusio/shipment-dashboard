@@ -1,19 +1,20 @@
 import React, {
   createContext, ReactNode, useReducer, useContext,
 } from 'react';
-import { ShipmentObject } from 'utils/types';
+import { FullShipmentObject, ShipmentObject } from 'utils/types';
 /**
  * context basic functionality that provides the data for the app
  * and update it based on specific needs
  * @see https://kentcdodds.com/blog/how-to-use-react-context-effectively
  */
 
-export type ActionOptions = 'SET_DATA' | 'ADD_SHIPMENT' | 'REMOVE_SHIPMENT' | 'EDIT_SHIPMENT';
-export type Action = { type: ActionOptions, data: ShipmentObject[] };
+export type ActionOptions = 'SET_DATA' | 'ADD_SHIPMENT' | 'REMOVE_SHIPMENT' | 'EDIT_SHIPMENT' | 'SET_FULLSHIPMENTS';
+export type Action = { type: ActionOptions, data: ShipmentObject[] | FullShipmentObject[] };
 export type Dispatch = (action: Action) => void;
 export type ShipmentsContextProps = { children: ReactNode };
 export type State = {
-  shipmentsList: ShipmentObject[];
+  shipmentsLatestList: ShipmentObject[];
+  shipmentsFullList: FullShipmentObject[];
   shipmentsDelivered: number;
   shipmentsCancelled: number;
   shipmentsInTransit: number;
@@ -57,15 +58,33 @@ const ShipmentReducer = (state: State, action: Action): State => {
       } = shipmentCounts(data);
 
       return {
-        shipmentsList: data,
+        ...state,
+        shipmentsLatestList: data,
         shipmentsDelivered,
         shipmentsCancelled,
         shipmentsInTransit,
       };
     }
-    // case 'ADD_SHIPMENT': {
-    //   return {count: state.count - 1}
-    // }
+    case 'SET_FULLSHIPMENTS': {
+      return {
+        ...state,
+        shipmentsFullList: data as FullShipmentObject[],
+      };
+    }
+    case 'ADD_SHIPMENT': {
+      const { shipmentsFullList } = state;
+      const newData = { ...shipmentsFullList, data };
+      const {
+        shipmentsDelivered, shipmentsCancelled, shipmentsInTransit,
+      } = shipmentCounts(newData);
+      return {
+        ...state,
+        shipmentsFullList: newData,
+        shipmentsDelivered,
+        shipmentsCancelled,
+        shipmentsInTransit,
+      };
+    }
     // case 'REMOVE_SHIPMENT': {
     //   return {count: state.count - 1}
     // }
@@ -80,7 +99,8 @@ const ShipmentReducer = (state: State, action: Action): State => {
 
 const ShipmentProvider = ({ children }: ShipmentsContextProps) => {
   const [state, dispatch] = useReducer(ShipmentReducer, {
-    shipmentsList: [],
+    shipmentsLatestList: [],
+    shipmentsFullList: [],
     shipmentsDelivered: 0,
     shipmentsCancelled: 0,
     shipmentsInTransit: 0,
@@ -88,7 +108,7 @@ const ShipmentProvider = ({ children }: ShipmentsContextProps) => {
   const value = { state, dispatch };
 
   return <ShipmentContext.Provider value={value}>{children}</ShipmentContext.Provider>;
-}
+};
 
 const useShipmentContext = () => {
   const context = useContext(ShipmentContext);

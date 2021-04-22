@@ -5,14 +5,16 @@ import {
 } from '@material-ui/core';
 import { useShipmentContext } from 'utils/context/ShipmentsContext';
 import { ShipmentObject } from 'utils/types';
+import ModeTransportIcon from 'components/ModeTransportIcon/ModeTransportIcon';
+
 import styles from './ShipmentDataTableStyles';
 
 const useStyles = makeStyles(styles);
 
 const ShipmentDataTable = (): JSX.Element => {
   const classes = useStyles(styles);
-  const { state: { shipmentsList } } = useShipmentContext();
-  const tableRows = shipmentsList.splice(0, 10);
+  const { state: { shipmentsLatestList } } = useShipmentContext();
+  const tableRows = [...shipmentsLatestList].splice(0, 10);
   return (
     <div className={classes.container}>
       <TableContainer>
@@ -42,7 +44,7 @@ const ShipmentDataTable = (): JSX.Element => {
                   {Destination}
                 </TableCell>
                 <TableCell>
-                  {Mode}
+                  <ModeTransportIcon Mode={Mode} />
                 </TableCell>
                 <TableCell>
                   {Status}

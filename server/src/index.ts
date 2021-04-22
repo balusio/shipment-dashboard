@@ -2,8 +2,8 @@ import express from 'express';
 import csvToJson from 'csvtojson';
 import path from 'path';
 import cors from 'cors';
-import dataGetter from './dataGetter';
-
+import ShipmentList from './ShipmentList';
+import ShipmentDetail from './ShipmentDetail';
 const app = express();
 app.use(cors())
 const PORT = 8080;
@@ -18,8 +18,8 @@ app.get('/data', (req,res) => {
     res.send(jsonObj);
   })
 });
-app.get('/alldata', dataGetter);
-
+app.get('/alldata', ShipmentList);
+app.get('/shipment/:id/', ShipmentDetail);
 app.listen(PORT, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
 });

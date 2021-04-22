@@ -6,7 +6,7 @@ const ShipmentResumeStyles = (theme: Theme): StyleRules => createStyles({
     justifyContent: 'space-between',
     maxWidth: '70%',
     width: '100%',
-    margin: '20px auto',
+    margin: theme.spacing(2, 'auto'),
   },
   title: {
     fontWeight: 'bold',

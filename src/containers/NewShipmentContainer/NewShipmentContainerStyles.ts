@@ -1,28 +1,27 @@
 import { createStyles, StyleRules, Theme } from '@material-ui/core/styles';
 
-const HomeContainerStyles = (theme: Theme): StyleRules => createStyles({
+const ShipmentListContainerStyles = (theme: Theme): StyleRules => createStyles({
   container: {
     padding: theme.spacing(2),
     flex: 1,
-    justifyContent: 'space-between',
     display: 'flex',
     flexDirection: 'column',
   },
   title: {
     fontWeight: 'bold',
+    margin: theme.spacing(2, 0),
   },
-  itemQuantity: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  totalShipments: {
-    alignSelf: 'flex-end',
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
   },
   linkContainer: {
-    textAlign: 'right',
     padding: theme.spacing(0.5, 0),
   },
   linkshipment: {
+    width: '100%',
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.secondary.dark,
     '&:hover': {
@@ -32,4 +31,4 @@ const HomeContainerStyles = (theme: Theme): StyleRules => createStyles({
   },
 });
 
-export default HomeContainerStyles;
+export default ShipmentListContainerStyles;
