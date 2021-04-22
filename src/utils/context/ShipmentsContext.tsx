@@ -9,7 +9,10 @@ import { FullShipmentObject, ShipmentObject } from 'utils/types';
  */
 
 export type ActionOptions = 'SET_DATA' | 'ADD_SHIPMENT' | 'REMOVE_SHIPMENT' | 'EDIT_SHIPMENT' | 'SET_FULLSHIPMENTS';
-export type Action = { type: ActionOptions, data: ShipmentObject[] | FullShipmentObject[] };
+export type Action = {
+  type: ActionOptions,
+  data: ShipmentObject[] | FullShipmentObject[] | FullShipmentObject
+};
 export type Dispatch = (action: Action) => void;
 export type ShipmentsContextProps = { children: ReactNode };
 export type State = {
@@ -22,7 +25,7 @@ export type State = {
 
 const ShipmentContext = createContext<{ state: State, dispatch: Dispatch } | undefined>(undefined);
 
-const shipmentCounts = (data: ShipmentObject[]) => {
+const shipmentCounts = (data: ShipmentObject[] | FullShipmentObject[]) => {
   let shipmentsDelivered: number = 0;
   let shipmentsCancelled: number = 0;
   let shipmentsInTransit: number = 0;
@@ -55,11 +58,11 @@ const ShipmentReducer = (state: State, action: Action): State => {
     case 'SET_DATA': {
       const {
         shipmentsDelivered, shipmentsCancelled, shipmentsInTransit,
-      } = shipmentCounts(data);
+      } = shipmentCounts(data as ShipmentObject[]);
 
       return {
         ...state,
-        shipmentsLatestList: data,
+        shipmentsLatestList: data as ShipmentObject[],
         shipmentsDelivered,
         shipmentsCancelled,
         shipmentsInTransit,
@@ -73,13 +76,13 @@ const ShipmentReducer = (state: State, action: Action): State => {
     }
     case 'ADD_SHIPMENT': {
       const { shipmentsFullList } = state;
-      const newData = { ...shipmentsFullList, data };
+      const newData = [...shipmentsFullList, data];
       const {
         shipmentsDelivered, shipmentsCancelled, shipmentsInTransit,
-      } = shipmentCounts(newData);
+      } = shipmentCounts(newData as FullShipmentObject[]);
       return {
         ...state,
-        shipmentsFullList: newData,
+        shipmentsFullList: newData as FullShipmentObject[],
         shipmentsDelivered,
         shipmentsCancelled,
         shipmentsInTransit,

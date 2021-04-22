@@ -16,7 +16,11 @@ const HomeContainer = (): JSX.Element => {
   const classes = useStyles();
   const {
     state: {
-      shipmentsInTransit, shipmentsDelivered, shipmentsCancelled, shipmentsLatestList,
+      shipmentsInTransit,
+      shipmentsDelivered,
+      shipmentsCancelled,
+      shipmentsLatestList,
+      shipmentsFullList,
     },
     dispatch,
   } = useShipmentContext();
@@ -31,7 +35,7 @@ const HomeContainer = (): JSX.Element => {
           });
         });
     }
-  }, []);
+  }, [shipmentsFullList]);
 
   return (
     <>
@@ -64,7 +68,7 @@ const HomeContainer = (): JSX.Element => {
 
         <Typography variant="body2" className={classes.totalShipments}>
           total Shipments:
-          <strong>{ shipmentsLatestList.length }</strong>
+          <strong>{ shipmentsFullList.length }</strong>
         </Typography>
       </div>
     </>

@@ -41,6 +41,11 @@ const NewShipmentContainer = (): JSX.Element => {
     });
   };
 
+  const setNewShipment = () => dispatch({
+    type: 'ADD_SHIPMENT',
+    data: formObject,
+  });
+
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <AppBar />
@@ -132,6 +137,7 @@ const NewShipmentContainer = (): JSX.Element => {
           </div>
         </form>
         <Button
+          onClick={setNewShipment}
           classes={{
             root: classes.linkshipment,
           }}
