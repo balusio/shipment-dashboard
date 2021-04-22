@@ -8,7 +8,7 @@ import {
 import { Link, useParams } from 'react-router-dom';
 import { useShipmentContext } from 'utils/context/ShipmentsContext';
 import ModeTransportIcon from 'components/ModeTransportIcon/ModeTransportIcon';
-
+import { API_URL } from 'utils/constants';
 import styles from './ShipmentDetailStyles';
 
 const useStyles = makeStyles(styles);
@@ -22,7 +22,7 @@ const ShipmentDetailContainer = (): JSX.Element | null => {
 
   useEffect(() => {
     if (shipmentsFullList.length <= 0) {
-      axios.get(`http://localhost:8080/shipment/${id}`)
+      axios.get(`${API_URL}/shipment/${id}`)
         .then(({ data }: AxiosResponse) => {
           setShipment(data[0]);
         });

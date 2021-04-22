@@ -13,6 +13,7 @@ const useStyles = makeStyles(styles);
 
 const App = (): JSX.Element => {
   const classes = useStyles();
+
   return (
     <div className={classes.root}>
       <ShipmentProvider>

@@ -6,7 +6,7 @@ import ShipmentList from './ShipmentList';
 import ShipmentDetail from './ShipmentDetail';
 const app = express();
 app.use(cors())
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const dataFile: string = path.resolve(__dirname, 'data/shipment-data.csv');
 
 app.get('/', (req, res) => res.send('Express + TypeScript Server'));

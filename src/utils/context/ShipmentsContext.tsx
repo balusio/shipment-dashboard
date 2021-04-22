@@ -2,12 +2,12 @@ import React, {
   createContext, ReactNode, useReducer, useContext,
 } from 'react';
 import { FullShipmentObject, ShipmentObject } from 'utils/types';
+
 /**
  * context basic functionality that provides the data for the app
  * and update it based on specific needs
- * @see https://kentcdodds.com/blog/how-to-use-react-context-effectively
+ * this pattern is based on : @see https://kentcdodds.com/blog/how-to-use-react-context-effectively
  */
-
 export type ActionOptions = 'SET_DATA' | 'ADD_SHIPMENT' | 'REMOVE_SHIPMENT' | 'EDIT_SHIPMENT' | 'SET_FULLSHIPMENTS';
 export type Action = {
   type: ActionOptions,
@@ -25,6 +25,7 @@ export type State = {
 
 const ShipmentContext = createContext<{ state: State, dispatch: Dispatch } | undefined>(undefined);
 
+// count shipments status
 const shipmentCounts = (data: ShipmentObject[] | FullShipmentObject[]) => {
   let shipmentsDelivered: number = 0;
   let shipmentsCancelled: number = 0;
@@ -89,10 +90,10 @@ const ShipmentReducer = (state: State, action: Action): State => {
       };
     }
     // case 'REMOVE_SHIPMENT': {
-    //   return {count: state.count - 1}
+    //   return {}
     // }
     // case 'EDIT_SHIPMENT': {
-    //   return {count: state.count - 1}
+    //   return {}
     // }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);

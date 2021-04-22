@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import AppBar from 'components/AppBar/AppBar';
 import { FullShipmentObject } from 'utils/types';
@@ -6,12 +6,12 @@ import {
   Button, makeStyles, Typography, TableRow,
   Table, TableCell, TableBody, TableContainer, TableHead, TableCellProps,
 } from '@material-ui/core';
-import TableModeCell from 'components/ModeTransportIcon/ModeTransportIcon';
+import ModeTransportIcon from 'components/ModeTransportIcon/ModeTransportIcon';
 import { Link, NavLink } from 'react-router-dom';
 import { useShipmentContext } from 'utils/context/ShipmentsContext';
 
 import styles from './ShipmentListContainerStyles';
-import ModeTransportIcon from 'components/ModeTransportIcon/ModeTransportIcon';
+import { API_URL } from 'utils/constants';
 
 const useStyles = makeStyles(styles);
 
@@ -32,7 +32,7 @@ const ShipmentListContainer = (): JSX.Element => {
 
   useEffect(() => {
     if (shipmentsFullList.length <= 0) {
-      axios.get('http://localhost:8080/alldata')
+      axios.get(`${API_URL}alldata`)
         .then(({ data }: AxiosResponse) => {
           dispatch({
             type: 'SET_FULLSHIPMENTS',

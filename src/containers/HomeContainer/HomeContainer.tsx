@@ -7,6 +7,7 @@ import { useShipmentContext } from 'utils/context/ShipmentsContext';
 import { Button, makeStyles, Typography } from '@material-ui/core';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import { Link } from 'react-router-dom';
+import { API_URL } from 'utils/constants';
 
 import styles from './HomeContainerStyles';
 
@@ -27,7 +28,7 @@ const HomeContainer = (): JSX.Element => {
 
   useEffect(() => {
     if (shipmentsLatestList.length <= 0) {
-      axios.get('http://localhost:8080/data')
+      axios.get(`${API_URL}data`)
         .then(({ data }: AxiosResponse) => {
           dispatch({
             type: 'SET_DATA',
