@@ -11,6 +11,7 @@ type DataHookParams = {
  * also is a centralized place to handle common HTTTP request
  * @param url url that you want to check
  * @param key LocalStorage key in case you want query cached data
+ * TODO: set expire data to overwrite on localStorage to keep up to date data
  */
 const DataHook = ({ url, dataKey }: DataHookParams) => {
   const [error, setError] = useState<AxiosResponse | null | string>(null);

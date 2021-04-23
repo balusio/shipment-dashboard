@@ -11,6 +11,12 @@ import styles from './AppStyles';
 
 const useStyles = makeStyles(styles);
 
+/**
+ * the App component is the base for routing definition and general providers,
+ * please declare routes here that point to components inside the Containers folder
+ * @see https://reactrouter.com/web/guides/quick-start 
+ * for details
+ */
 const App = (): JSX.Element => {
   const classes = useStyles();
   return (

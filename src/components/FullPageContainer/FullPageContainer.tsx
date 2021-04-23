@@ -11,6 +11,11 @@ type FullPageContainerProps = {
 
 const useStyles = makeStyles(styles);
 
+/**
+ * Wrap incoming containers in this component to provide the header logo
+ * and default styles of a page
+ * @returns
+ */
 const FullPageContainer = ({ children, title }: FullPageContainerProps): JSX.Element => {
   const classes = useStyles();
   return (

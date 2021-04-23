@@ -10,7 +10,9 @@ type ShipmentResumeProps = {
   shipmentsCancelled?: number;
   shipmentsInTransit?: number;
 };
-
+/**
+ * Show the quantity shipments on status Canceller, In Transit or Delivered
+ */
 const ShipmentResume = ({
   shipmentsDelivered = 0,
   shipmentsCancelled = 0,

@@ -16,10 +16,12 @@ import styles from './HomeContainerStyles';
 
 const useStyles = makeStyles(styles);
 
+/**
+ * Homepage container, uses the DataHook to recieve always data.
+ */
 const HomeContainer = (): JSX.Element => {
   const { isLoading, response, error } = DataHook({ url: `${API_URL}alldata`, dataKey: 'homeData' });
   const classes = useStyles();
-
   const {
     state: {
       shipmentsInTransit,
@@ -43,9 +45,11 @@ const HomeContainer = (): JSX.Element => {
     return <LoaderComponent />;
   }
 
+  // Nice to have snackbar for this and error type show
   if (error) {
     return <>THERE WAS A MISTAKE</>;
   }
+
   return (
     <FullPageContainer title="Latest Shipments">
       <ShipmentResume

@@ -14,6 +14,9 @@ import styles from './NewShipmentContainerStyles';
 
 const useStyles = makeStyles(styles);
 
+/**
+ * Provides a new Shipment that will be added to the context
+ */
 const NewShipmentContainer = (): JSX.Element => {
   const classes = useStyles();
   const { dispatch } = useShipmentContext();

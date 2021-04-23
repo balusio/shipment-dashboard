@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import axios, { AxiosResponse } from 'axios';
+import React, { Fragment, useEffect, useState } from 'react';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import AppBar from 'components/AppBar/AppBar';
 import { FullShipmentObject } from 'utils/types';
 import {
   Button, makeStyles, Typography, TableRow,
   Table, TableCell, TableBody, TableContainer,
-  TableHead, TableCellProps,
+  TableHead, TableCellProps, Snackbar,
 } from '@material-ui/core';
 import ModeTransportIcon from 'components/ModeTransportIcon/ModeTransportIcon';
 import { Link, NavLink } from 'react-router-dom';
@@ -17,6 +17,7 @@ const useStyles = makeStyles(styles);
 
 const ShipmentListContainer = (): JSX.Element => {
   const classes = useStyles();
+  const [error, setError] = useState<AxiosError | null>(null);
   const {
     state: {
       shipmentsFullList,
@@ -39,14 +40,30 @@ const ShipmentListContainer = (): JSX.Element => {
             type: 'SET_FULLSHIPMENTS',
             data,
           });
-        });
+        }).catch((e) => setError(e));
     }
   }, []);
 
   return (
     <>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        open={!!(error)}
+        autoHideDuration={1000}
+        action={(
+          <Fragment>
+            <Typography>
+              {error && error.message}
+            </Typography>
+          </Fragment>
+        )}
+      />
       <AppBar />
       <div className={classes.container}>
+
         <Typography variant="h3" className={classes.title}>
           All Shipments
         </Typography>

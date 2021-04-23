@@ -10,6 +10,12 @@ type ModeTransportIconProps = SvgIconProps & {
   Mode: string;
 };
 
+/**
+ * simple wrapper component for icon logic
+ * @param Mode string that provide a type of transport mode
+ * by default return the string wrapped
+ * @returns MaterialUI icon or styled string
+ */
 const ModeTransportIcon = ({ Mode, ...props }: ModeTransportIconProps): JSX.Element => {
   let ModeIcon;
   switch (Mode) {

@@ -6,7 +6,7 @@ import { FullShipmentObject, ShipmentObject } from 'utils/types';
 /**
  * context basic functionality that provides the data for the app
  * and update it based on specific needs
- * this pattern is based on : @see https://kentcdodds.com/blog/how-to-use-react-context-effectively
+ * this pattern is based on @see https://kentcdodds.com/blog/how-to-use-react-context-effectively
  */
 export type ActionOptions = 'SET_DATA' | 'ADD_SHIPMENT' | 'REMOVE_SHIPMENT' | 'EDIT_SHIPMENT' | 'SET_FULLSHIPMENTS';
 export type Action = {
@@ -80,6 +80,9 @@ const ShipmentReducer = (state: State, action: Action): State => {
       const {
         shipmentsDelivered, shipmentsCancelled, shipmentsInTransit,
       } = shipmentCounts(newData as FullShipmentObject[]);
+
+      localStorage.setItem('homeData', JSON.stringify(newData));
+
       return {
         ...state,
         shipmentsFullList: newData as FullShipmentObject[],
@@ -95,6 +98,7 @@ const ShipmentReducer = (state: State, action: Action): State => {
 };
 
 const ShipmentProvider = ({ children }: ShipmentsContextProps) => {
+  // TODO start the App with a query data that can provide the shipments in all the app
   const [state, dispatch] = useReducer(ShipmentReducer, {
     shipmentsFullList: [],
     shipmentsDelivered: 0,

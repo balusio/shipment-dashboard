@@ -6,15 +6,19 @@ import {
 import { useShipmentContext } from 'utils/context/ShipmentsContext';
 import { ShipmentObject } from 'utils/types';
 import ModeTransportIcon from 'components/ModeTransportIcon/ModeTransportIcon';
+import { NavLink } from 'react-router-dom';
 
 import styles from './ShipmentDataTableStyles';
 
 const useStyles = makeStyles(styles);
 
+/**
+ * Simplified dataTable that shows the latest 10 shipments on the homepage
+ */
 const ShipmentDataTable = (): JSX.Element => {
   const classes = useStyles(styles);
   const { state: { shipmentsFullList } } = useShipmentContext();
-  const tableRows = [...shipmentsFullList].splice(0, 10);
+  const tableRows = [...shipmentsFullList].reverse().splice(0, 10);
 
   return (
     <div className={classes.container}>
@@ -51,7 +55,12 @@ const ShipmentDataTable = (): JSX.Element => {
                   {Status}
                 </TableCell>
                 <TableCell>
-                  <Button className={classes.linkshipment} color="primary">
+                  <Button
+                    className={classes.linkshipment}
+                    component={NavLink}
+                    color="primary"
+                    to={`/shipmentDetail/${shipmentID}`}
+                  >
                     Details
                   </Button>
                 </TableCell>
