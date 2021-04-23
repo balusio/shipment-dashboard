@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  AppBar, Toolbar, Typography, Button, makeStyles,
+  AppBar, Toolbar, makeStyles,
 } from '@material-ui/core';
 import Logo from 'assets/img/logixboard-logo.png';
 import { Link } from 'react-router-dom';

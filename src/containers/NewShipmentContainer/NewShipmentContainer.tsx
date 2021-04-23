@@ -32,6 +32,7 @@ const NewShipmentContainer = (): JSX.Element => {
     'Estimated Arrival': `${new Date()}`,
     Status: '',
   });
+
   const handleChange = (e: HTMLInputElement | any) : void => {
     if (e.target.value !== '' || e.target.value !== null) {
       serFormObject({
@@ -137,7 +138,6 @@ const NewShipmentContainer = (): JSX.Element => {
               label="Estimated Departure"
               value={formObject['Estimated Departure']}
               onChange={(date) => date && handleDateChange('Estimated Departure', date.toString())}
-
             />
             <KeyboardDatePicker
               disableToolbar

@@ -15,6 +15,9 @@ import styles from './ShipmentListContainerStyles';
 
 const useStyles = makeStyles(styles);
 
+/**
+ * Full List of Shipments, shows a snackbar if the offline mode is setted
+ */
 const ShipmentListContainer = (): JSX.Element => {
   const classes = useStyles();
   const [error, setError] = useState<AxiosError | null>(null);
@@ -31,7 +34,7 @@ const ShipmentListContainer = (): JSX.Element => {
     <TableCell classes={{ head: classes.tableHead }} {...props}>{children}</TableCell>
   );
 
-  // TODO: move this to the dataHook and migrate the functionality to be used offline
+  // TODO: move this to the dataHook and extend the functionality to be used offline
   useEffect(() => {
     if (shipmentsFullList.length <= 0) {
       axios.get(`${API_URL}alldata`)
@@ -54,11 +57,11 @@ const ShipmentListContainer = (): JSX.Element => {
         open={!!(error)}
         autoHideDuration={1000}
         action={(
-          <Fragment>
+          <>
             <Typography>
               {error && error.message}
             </Typography>
-          </Fragment>
+          </>
         )}
       />
       <AppBar />

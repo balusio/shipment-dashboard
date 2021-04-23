@@ -46,6 +46,13 @@ The entrypoint is the App.tsx file where you will find the context definitions a
   * Common types
   * constants variables
   * Material ui theme
+  * custom hooks
+
+### Offline mode and cached data
+
+Most of the Data passed through the server lands on the ShipmentsContext, the `DataHook` provides a way to centralize queries
+and insert those into the localStorage, this could be updated with Date expire checkings by time, or updated through context
+each time we apply changes on it, with the approach of DataHook and context we can replicate the functionality among the app without having to repeat querys and localStorage checkers
 
 The main usability of the apps runs under the ShipmentsContext where you can get the data in a centralized way.
 

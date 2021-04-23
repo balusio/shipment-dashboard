@@ -44,7 +44,6 @@ const ShipmentDetailContainer = (): JSX.Element | null => {
     'Estimated Arrival': EstArrival,
     'Estimated Departure': EstDeparture,
     Mode,
-    Status,
   } = shipment;
 
   const daysLeft = () => {

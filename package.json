@@ -1,6 +1,6 @@
 {
   "name": "shipment-dashboard",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Shipment status and freight forwarding visualization tool",
   "main": "index.js",
   "scripts": {

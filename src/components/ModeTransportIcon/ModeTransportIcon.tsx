@@ -31,6 +31,7 @@ const ModeTransportIcon = ({ Mode, ...props }: ModeTransportIconProps): JSX.Elem
     default:
       ModeIcon = <span>{Mode}</span>;
   }
+
   return ModeIcon;
 };
 

@@ -18,6 +18,7 @@ const useStyles = makeStyles(styles);
  */
 const FullPageContainer = ({ children, title }: FullPageContainerProps): JSX.Element => {
   const classes = useStyles();
+
   return (
     <>
       <AppBar />
