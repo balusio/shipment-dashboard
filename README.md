@@ -13,7 +13,7 @@ This project is based on 2 main parts
 
 ### server
 to dispose the data on the ui you must go into server folder:
-- (be sure you are under the correct node version using `nvm user` will automatically read the .nvmrc file with the node version)
+- (be sure you are under the correct node version using `nvm use` will automatically read the .nvmrc file with the node version)
 - run `npm install`
 - run `npm run server` to start the nodemon development server
 - run `npm run build` to build the server , will be disposed on the build folder , be sure after that to run it using `node ./build/index.js`
@@ -30,7 +30,7 @@ The front End runs under a webpack app with:
 
 be sure in order to install:
 - (be sure you are under the correct node version using `nvm user` will automatically read the .nvmrc file with the node version)
-- be sure your `.env` file is setted with the API_URL variable (will be readed and access through webpack)
+- be sure your `.env` file is setted with the API_URL variable of the server (will be readed and access through webpack)
 - build and run the server folder.
 - run `npm install` on the root.
 - run `npm run start` to be on development mode
