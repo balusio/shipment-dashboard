@@ -8,7 +8,7 @@ module.exports = {
   target: 'web',
   devtool: 'source-map',
   output: {
-    filename: 'main.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     sourceMapFilename: "[name].js.map"
   },
