@@ -51,7 +51,7 @@ const ShipmentDataTable = (): JSX.Element => {
                   {Status}
                 </TableCell>
                 <TableCell>
-                  <Button color="primary">
+                  <Button className={classes.linkshipment} color="primary">
                     Details
                   </Button>
                 </TableCell>

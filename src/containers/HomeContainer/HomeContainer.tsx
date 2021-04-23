@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import AppBar from 'components/AppBar/AppBar';
 import LoaderComponent from 'components/LoaderComponent/LoaderComponent';
 import ShipmentResume from 'components/ShipmentResume/ShipmentResume';
 import ShipmentDataTable from 'components/ShipmentDataTable/ShipmentDataTable';
+import FullPageContainer from 'components/FullPageContainer/FullPageContainer';
 import { useShipmentContext } from 'utils/context/ShipmentsContext';
 import {
   Button, makeStyles, Typography,
@@ -17,7 +17,7 @@ import styles from './HomeContainerStyles';
 const useStyles = makeStyles(styles);
 
 const HomeContainer = (): JSX.Element => {
-  const { isLoading, response, error } = DataHook({ url: `${API_URL}data`, dataKey: 'homeData' });
+  const { isLoading, response, error } = DataHook({ url: `${API_URL}alldata`, dataKey: 'homeData' });
   const classes = useStyles();
 
   const {
@@ -47,40 +47,34 @@ const HomeContainer = (): JSX.Element => {
     return <>THERE WAS A MISTAKE</>;
   }
   return (
-    <>
-      <AppBar />
-      <div className={classes.container}>
-        <Typography variant="h2" className={classes.title}>
-          Latest shipments
-        </Typography>
-        <ShipmentResume
-          {...{
-            shipmentsInTransit,
-            shipmentsDelivered,
-            shipmentsCancelled,
+    <FullPageContainer title="Latest Shipments">
+      <ShipmentResume
+        {...{
+          shipmentsInTransit,
+          shipmentsDelivered,
+          shipmentsCancelled,
+        }}
+      />
+      <ShipmentDataTable />
+      <div className={classes.linkContainer}>
+        <Button
+          classes={{
+            root: classes.linkshipment,
           }}
-        />
-        <ShipmentDataTable />
-        <div className={classes.linkContainer}>
-          <Button
-            classes={{
-              root: classes.linkshipment,
-            }}
-            component={Link}
-            to="/allshipments"
-            variant="contained"
-          >
-            See all Shipments
-            <ArrowForwardIcon className={classes.linkIcon} />
-          </Button>
-        </div>
-
-        <Typography variant="body2" className={classes.totalShipments}>
-          total Shipments:
-          <strong>{ shipmentsFullList.length }</strong>
-        </Typography>
+          component={Link}
+          to="/allshipments"
+          variant="contained"
+        >
+          See all Shipments
+          <ArrowForwardIcon className={classes.linkIcon} />
+        </Button>
       </div>
-    </>
+
+      <Typography variant="body2" className={classes.totalShipments}>
+        total Shipments:
+        <strong>{ shipmentsFullList.length }</strong>
+      </Typography>
+    </FullPageContainer>
   );
 };
 
